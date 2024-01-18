@@ -4,14 +4,47 @@ A multi-user website that tracks an inventory of user's alcohol to pair with dri
 
 ## Installation
 
-1. Clone the repository from https://github.com/jasonhendriks/bartender
+1. Download the [source code](https://github.com/jasonhendriks/bartender) to your workstation
+    1. `git clone https://github.com/jasonhendriks/bartender`
+1. [Optional] Install the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-cli)
+1. [Optional] Connect your new local repository to Heroku:
+    1. `heroku git:remote -a bartender`
+
+## Running Locally
+
+### Build the application and run with the Maven Spring Boot plug-in
+
+```
+$ mvn spring-boot:run -pl web
+```
+
+### Build the application and run with the Heroku CLI
+
+```
+$ mvn install
+$ heroku local
+```
 
 ## Deployment
 
-### Auto-Deploy through GitHub
+### Continuous Integration
 
-### Manual Deploy through Heroku
+After committing and pushing any changes, GitHub will run the tests and, if successful, auto-deploy to Heroku.
+
+### Manual Deploy with Heroku CLI
+
+Push to the Heroku GIT remote to trigger a deployment:
+
+```
+git push heroku
+```
 
 ## Production
 
-Access the site at
+### Debugging
+
+View the production logs:
+
+```
+heroku logs --tail
+```
