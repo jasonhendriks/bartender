@@ -20,7 +20,7 @@ public class DomainSpecificLanguage {
     }
 
     public List<Ingredient> findIngredients() {
-        return inventoryRestController.findIngredients();
+        return inventoryRestController.findAllIngredients();
     }
 
 }
