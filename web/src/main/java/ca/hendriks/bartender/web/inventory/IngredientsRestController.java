@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/inventory")
-public class InventoryRestController {
+@RequestMapping("/ingredients")
+public class IngredientsRestController {
 
     private final List<Ingredient> ingredients = new ArrayList<>();
 

@@ -1,4 +1,4 @@
-package ca.hendriks.bartender.inventory.functionaltest;
+package ca.hendriks.bartender.web.functionaltest;
 
 import ca.hendriks.bartender.common.Ingredient;
 import io.cucumber.datatable.DataTable;
@@ -26,12 +26,12 @@ public class IngredientSteps {
 
     @When("the administrator adds an ingredient:")
     public void the_administrator_adds_an_ingredient(final DataTable dataTable) {
-        dsl.addIngredient();
+        dsl.ingredients.addIngredient();
     }
 
     @Then("the ingredients should be:")
     public void the_ingredients_should_be(final DataTable dataTable) {
-        final List<Ingredient> ingredients = dsl.findIngredients();
+        final List<Ingredient> ingredients = dsl.ingredients.findIngredients();
         final List<Map<String, String>> expectedItems = dataTable.asMaps();
         assertEquals(ingredients.size(), expectedItems.size());
         for (int c = 0; c < ingredients.size(); c++) {

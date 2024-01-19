@@ -1,4 +1,4 @@
-package ca.hendriks.bartender.inventory.functionaltest;
+package ca.hendriks.bartender.web.functionaltest;
 
 import org.junit.jupiter.api.Assertions;
 

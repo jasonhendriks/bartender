@@ -20,6 +20,7 @@
         <module>recipes</module>
         <module>web</module>
         <module>common</module>
+        <module>users</module>
     </modules>
 
     <properties>

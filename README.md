@@ -1,27 +1,37 @@
-# bartender
+# Bartender
 
 A multi-user website that tracks an inventory of user's alcohol to pair with drink recipes
 
 ## Development Requirements
 
-1. Git
-1. Apache Maven
-1. [Optional] [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-cli)
+- Git
+- Apache Maven
+- [Optional] [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-cli)
 
 ## Installation
 
 1. Download the [source code](https://github.com/jasonhendriks/bartender) to your workstation
-    1. `git clone https://github.com/jasonhendriks/bartender`
-1. [Optional] Connect your new local repository to Heroku:
-    1. `heroku git:remote -a bartender`
+
+```
+git clone https://github.com/jasonhendriks/bartender
+```
+
+2. [Optional] If you installed the Heroku CLI, connect your local repository to Heroku:
+
+```
+heroku git:remote -a bartender
+```
 
 ## Running Locally
 
 ### Build the application and run with the Maven Spring Boot plug-in
 
 ```
+$ mvn install
 $ mvn spring-boot:run -pl web
 ```
+
+Then access the application in your web browser: http://localhost:8080
 
 ### Build the application and run with the Heroku CLI
 
@@ -30,7 +40,9 @@ $ mvn install
 $ heroku local
 ```
 
-## Deployment
+Then access the application in your web browser: http://localhost:5001
+
+## Deployment to Production
 
 ### Continuous Integration
 
@@ -44,7 +56,7 @@ Push to the Heroku GIT remote to trigger a deployment:
 git push heroku
 ```
 
-## Production
+## Production Support
 
 ### Debugging
 
