@@ -1,6 +1,8 @@
 # Bartender
 
-A multi-user website that tracks an inventory of user's alcohol to pair with drink recipes
+A multi-user website that tracks an inventory of user's spirits and pairs the ingredients with recipes.
+
+Try it out online: https://bartender-162eb18845e5.herokuapp.com
 
 ## Development Requirements
 
