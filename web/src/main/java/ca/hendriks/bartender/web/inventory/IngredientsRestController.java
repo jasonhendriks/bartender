@@ -1,6 +1,6 @@
 package ca.hendriks.bartender.web.inventory;
 
-import ca.hendriks.bartender.common.Ingredient;
+import ca.hendriks.bartender.common.IngredientVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,18 +11,18 @@ import java.util.List;
 @RequestMapping("/ingredients")
 public class IngredientsRestController {
 
-    private final List<Ingredient> ingredients = new ArrayList<>();
+    private final List<IngredientVO> ingredients = new ArrayList<>();
 
     @GetMapping
-    public List<Ingredient> findAllIngredients() {
+    public List<IngredientVO> findAllIngredients() {
         return ingredients;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addIngredient() {
-        final Ingredient ingredient = new Ingredient("Spirits", "Vodka");
+    public IngredientVO addIngredient(@RequestBody IngredientVO ingredient) {
         ingredients.add(ingredient);
+        return ingredient;
     }
 
 }

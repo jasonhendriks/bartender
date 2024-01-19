@@ -32,7 +32,7 @@ public class CucumberIT {
 
         @Bean
         BddIngredientService bddIngredientService(final ObjectMapper objectMapper, final IngredientsRestController ingredientsRestController, final BddMockMvcService mockMvc) {
-            return new BddIngredientService(objectMapper, ingredientsRestController, mockMvc);
+            return new BddIngredientService(objectMapper, mockMvc);
         }
 
     }

@@ -1,8 +1,7 @@
 package ca.hendriks.bartender.web.functionaltest;
 
-import ca.hendriks.bartender.common.Ingredient;
+import ca.hendriks.bartender.common.IngredientVO;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -20,27 +19,24 @@ public class IngredientSteps {
         this.dsl = dsl;
     }
 
-    @Given("Vodka is an ingredient")
-    public void vodka_is_an_ingredient() {
-    }
-
-    @When("the administrator adds an ingredient:")
-    public void the_administrator_adds_an_ingredient(final DataTable dataTable) {
-        dsl.ingredients.addIngredient();
+    @When("the administrator adds {string} into categrory {string},")
+    public void the_administrator_adds_into_categrory(final String name, final String type) {
+        final IngredientVO ingredient = new IngredientVO(type, name);
+        dsl.ingredients.addIngredient(ingredient);
     }
 
     @Then("the ingredients should be:")
     public void the_ingredients_should_be(final DataTable dataTable) {
-        final List<Ingredient> ingredients = dsl.ingredients.findIngredients();
+        final List<IngredientVO> ingredients = dsl.ingredients.findIngredients();
         final List<Map<String, String>> expectedItems = dataTable.asMaps();
         assertEquals(ingredients.size(), expectedItems.size());
         for (int c = 0; c < ingredients.size(); c++) {
             final Map<String, String> expected = expectedItems.get(c);
-            final Ingredient actual = ingredients.get(c);
-            final DataTableChecker<Ingredient> checker = new DataTableChecker<>(expected, actual);
+            final IngredientVO actual = ingredients.get(c);
+            final DataTableChecker<IngredientVO> checker = new DataTableChecker<>(expected, actual);
             assertAll(
-                    () -> checker.assertEquals(e -> e, Ingredient::type, "Type"),
-                    () -> checker.assertEquals(e -> e, Ingredient::name, "Name"),
+                    () -> checker.assertEquals(e -> e, IngredientVO::type, "Type"),
+                    () -> checker.assertEquals(e -> e, IngredientVO::name, "Name"),
                     () -> checker.validateMapKeys()
             );
         }
