@@ -76,6 +76,7 @@ heroku logs --tail
 - [Spring Boot Tutorial – Bootstrap a Simple Application](https://www.baeldung.com/spring-boot-start)
 - [Spring Boot MockMvc Example with @WebMvcTest](https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/)
 - [REST API URI Naming Conventions and Best Practices](https://restfulapi.net/resource-naming/)
+- [Which Java Type do you use for JPA collections and why?](https://stackoverflow.com/a/17950928)
 
 ## Drinks
 

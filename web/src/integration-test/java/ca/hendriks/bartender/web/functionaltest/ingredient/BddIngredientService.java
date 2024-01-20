@@ -1,6 +1,7 @@
-package ca.hendriks.bartender.web.functionaltest;
+package ca.hendriks.bartender.web.functionaltest.ingredient;
 
 import ca.hendriks.bartender.common.exception.UnexpectedBartenderException;
+import ca.hendriks.bartender.web.functionaltest.BddMockMvcService;
 import ca.hendriks.bartender.web.inventory.Ingredient;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
