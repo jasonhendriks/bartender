@@ -68,3 +68,19 @@ View the production logs:
 ```
 heroku logs --tail
 ```
+
+## Development Resources
+
+## Programming
+
+- [Spring Boot Tutorial – Bootstrap a Simple Application](https://www.baeldung.com/spring-boot-start)
+- [Spring Boot MockMvc Example with @WebMvcTest](https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/)
+- [REST API URI Naming Conventions and Best Practices](https://restfulapi.net/resource-naming/)
+
+## Drinks
+
+- [Cocktails 101](https://www.cocktailemporium.com/pages/cocktails-101)
+- [Cocktail and Drink Measures Explained](https://www.barschool.net/blog/cocktail-and-drink-measures-explained)
+- [James Bond's Vesper Martini](https://www.thespruceeats.com/vesper-martini-recipe-760130)
+- [The Savoy Cocktail Book](https://euvs-vintage-cocktail-books.cld.bz/1930-The-Savoy-Cocktail-Book)
+- [LCBO](https://www.lcbo.com/)
