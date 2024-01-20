@@ -6,8 +6,8 @@ Feature: Add ingredient
 
   Scenario: The administrator adds an ingredient
 
-    When the administrator adds "Vodka" into categrory "Spirits",
+    When the administrator adds "Vodka" into categrory "SPIRITS",
 
-    Then the ingredients should be:
-      | Type    | Name  |
-      | Spirits | Vodka |
+    Then the available ingredients should be:
+      | Name  | Type    |
+      | Vodka | SPIRITS |

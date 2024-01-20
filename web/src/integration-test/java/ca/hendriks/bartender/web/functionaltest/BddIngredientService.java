@@ -1,7 +1,7 @@
 package ca.hendriks.bartender.web.functionaltest;
 
-import ca.hendriks.bartender.common.IngredientVO;
 import ca.hendriks.bartender.common.exception.UnexpectedBartenderException;
+import ca.hendriks.bartender.web.inventory.Ingredient;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,16 +22,16 @@ public class BddIngredientService {
         this.mockMvc = mockMvc;
     }
 
-    public void addIngredient(IngredientVO ingredient) {
+    public void addIngredient(final Ingredient ingredient) {
         mvcResult = mockMvc.post("/ingredients", ingredient);
     }
 
-    public List<IngredientVO> findIngredients() {
+    public List<Ingredient> findIngredients() {
         final MvcResult mvcResult = mockMvc.get("/ingredients");
         return deserializeResult(mvcResult);
     }
 
-    private List<IngredientVO> deserializeResult(final MvcResult mvcResult) {
+    private List<Ingredient> deserializeResult(final MvcResult mvcResult) {
         try {
             final String contentAsString = mvcResult.getResponse().getContentAsString();
             return objectMapper.readValue(contentAsString, new TypeReference<>() {

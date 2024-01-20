@@ -48,11 +48,12 @@ Then access the application in your web browser: http://localhost:5001
 
 ### Continuous Integration
 
-After committing and pushing any changes, GitHub will run the tests and, if successful, auto-deploy to Heroku.
+After committing and pushing any changes, GitHub will run the tests. If successful, Heroku will automatically retrieve
+the changes, build and deploy.
 
 ### Manual Deploy with Heroku CLI
 
-Push to the Heroku GIT remote to trigger a deployment:
+Push to the Heroku GIT remote to manually trigger a deployment:
 
 ```
 git push heroku
