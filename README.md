@@ -6,9 +6,9 @@ Try it out online: https://bartender-162eb18845e5.herokuapp.com
 
 ## Requirements
 
-- JDK v21
-- Git
-- Apache Maven
+- [JDK v21](https://openjdk.org/projects/jdk/21/)
+- [Git](https://www.atlassian.com/git/tutorials/install-git)
+- [Apache Maven v3.9](https://maven.apache.org/install.html)
 - [Optional] [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-cli)
 
 ## Installation
@@ -78,6 +78,7 @@ heroku logs --tail
 - [Spring Boot MockMvc Example with @WebMvcTest](https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/)
 - [REST API URI Naming Conventions and Best Practices](https://restfulapi.net/resource-naming/)
 - [Which Java Type do you use for JPA collections and why?](https://stackoverflow.com/a/17950928)
+- [An Overview of Identifiers in Hibernate/JPA](https://www.baeldung.com/hibernate-identifiers)
 
 ## Drinks
 

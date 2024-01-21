@@ -16,7 +16,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>inventory</module>
         <module>recipes</module>
         <module>web</module>
         <module>common</module>
