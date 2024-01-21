@@ -4,8 +4,9 @@ A multi-user website that tracks an inventory of users' spirits and pairs the in
 
 Try it out online: https://bartender-162eb18845e5.herokuapp.com
 
-## Development Requirements
+## Requirements
 
+- JDK v21
 - Git
 - Apache Maven
 - [Optional] [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-cli)
