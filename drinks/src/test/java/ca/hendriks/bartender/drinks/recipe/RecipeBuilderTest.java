@@ -1,6 +1,8 @@
-package ca.hendriks.bartender.web.recipe;
+package ca.hendriks.bartender.drinks.recipe;
 
-import ca.hendriks.bartender.web.inventory.Ingredient;
+import ca.hendriks.bartender.drinks.ingredient.Ingredient;
+import ca.hendriks.bartender.drinks.recipe.ingredient.IngredientQuantityBuilder;
+import ca.hendriks.bartender.drinks.recipe.ingredient.IngredientWithQuantity;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -11,7 +13,7 @@ class RecipeBuilderTest {
 
     @Test
     void testBuildingARecipe() {
-        final IngredientQuantity ingredient = new IngredientQuantityBuilder()
+        final IngredientWithQuantity ingredient = new IngredientQuantityBuilder()
                 .quantity(1f)
                 .unitType(UnitType.MEASURE)
                 .ingredient(mock(Ingredient.class))

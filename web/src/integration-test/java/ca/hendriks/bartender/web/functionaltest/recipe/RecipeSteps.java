@@ -1,8 +1,12 @@
 package ca.hendriks.bartender.web.functionaltest.recipe;
 
+import ca.hendriks.bartender.drinks.ingredient.Ingredient;
+import ca.hendriks.bartender.drinks.recipe.Recipe;
+import ca.hendriks.bartender.drinks.recipe.RecipeBuilder;
+import ca.hendriks.bartender.drinks.recipe.UnitType;
+import ca.hendriks.bartender.drinks.recipe.ingredient.IngredientQuantityBuilder;
+import ca.hendriks.bartender.drinks.recipe.ingredient.IngredientWithQuantity;
 import ca.hendriks.bartender.web.functionaltest.DomainSpecificLanguage;
-import ca.hendriks.bartender.web.inventory.Ingredient;
-import ca.hendriks.bartender.web.recipe.*;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -20,7 +24,7 @@ public class RecipeSteps {
 
     @When("an administrator adds ingredients for a recipe named {string} with method {string}:")
     public void an_administrator_add_ingredients_for_a_recipe(final String recipeName, final String method, final DataTable dataTable) {
-        final List<IngredientQuantity> ingredients = dataTable.asMaps()
+        final List<IngredientWithQuantity> ingredients = dataTable.asMaps()
                 .stream()
                 .map(x -> {
                     final Float quantity = parseQuantity(x.get("Quantity"));

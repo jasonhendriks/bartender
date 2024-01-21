@@ -1,4 +1,4 @@
-package ca.hendriks.bartender.web.inventory;
+package ca.hendriks.bartender.drinks.ingredient;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

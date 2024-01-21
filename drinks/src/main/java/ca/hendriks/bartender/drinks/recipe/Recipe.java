@@ -1,5 +1,6 @@
-package ca.hendriks.bartender.web.recipe;
+package ca.hendriks.bartender.drinks.recipe;
 
+import ca.hendriks.bartender.drinks.recipe.ingredient.IngredientWithQuantity;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -15,15 +16,15 @@ public class Recipe {
     private String name;
 
     @OneToMany(cascade = CascadeType.PERSIST)
-    private Set<IngredientQuantity> ingredients;
+    private Set<IngredientWithQuantity> ingredients;
 
     private String method;
 
     Recipe() {
-
+        // JSR 338: The entity class must have a no-arg constructor.
     }
 
-    public Recipe(final String name, final Set<IngredientQuantity> ingredients, final String method) {
+    public Recipe(final String name, final Set<IngredientWithQuantity> ingredients, final String method) {
         this.name = name;
         this.ingredients = ingredients;
         this.method = method;
@@ -33,7 +34,7 @@ public class Recipe {
         return name;
     }
 
-    public Set<IngredientQuantity> getIngredients() {
+    public Set<IngredientWithQuantity> getIngredients() {
         return ingredients;
     }
 

@@ -1,4 +1,4 @@
-package ca.hendriks.bartender.web.inventory;
+package ca.hendriks.bartender.drinks.ingredient;
 
 import jakarta.persistence.*;
 
@@ -17,7 +17,7 @@ public class Ingredient {
     private IngredientType ingredientType;
 
     public Ingredient() {
-
+        // JSR 338: The entity class must have a no-arg constructor.
     }
 
     public Ingredient(final Integer id, final String name, final IngredientType ingredientType) {

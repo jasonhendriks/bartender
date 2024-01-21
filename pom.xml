@@ -161,7 +161,7 @@
             </dependency>
             <dependency>
                 <groupId>ca.hendriks.bartender</groupId>
-                <artifactId>inventory</artifactId>
+                <artifactId>drinks</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>

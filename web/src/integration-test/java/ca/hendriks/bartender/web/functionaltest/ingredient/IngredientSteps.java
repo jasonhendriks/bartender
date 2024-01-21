@@ -1,9 +1,9 @@
 package ca.hendriks.bartender.web.functionaltest.ingredient;
 
+import ca.hendriks.bartender.drinks.ingredient.Ingredient;
+import ca.hendriks.bartender.drinks.ingredient.IngredientType;
 import ca.hendriks.bartender.web.functionaltest.DataTableChecker;
 import ca.hendriks.bartender.web.functionaltest.DomainSpecificLanguage;
-import ca.hendriks.bartender.web.inventory.Ingredient;
-import ca.hendriks.bartender.web.inventory.IngredientType;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

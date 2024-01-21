@@ -1,6 +1,8 @@
-package ca.hendriks.bartender.web.recipe;
+package ca.hendriks.bartender.drinks.recipe.ingredient;
 
-import ca.hendriks.bartender.web.inventory.Ingredient;
+import ca.hendriks.bartender.drinks.ingredient.Ingredient;
+import ca.hendriks.bartender.drinks.recipe.RecipeBuilder;
+import ca.hendriks.bartender.drinks.recipe.UnitType;
 
 public class IngredientQuantityBuilder {
 
@@ -33,7 +35,7 @@ public class IngredientQuantityBuilder {
         return this;
     }
 
-    public IngredientQuantity build() {
-        return new IngredientQuantity(quantity, unitType, ingredient);
+    public IngredientWithQuantity build() {
+        return new IngredientWithQuantity(quantity, unitType, ingredient);
     }
 }

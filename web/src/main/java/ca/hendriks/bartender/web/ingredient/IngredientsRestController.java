@@ -1,5 +1,7 @@
-package ca.hendriks.bartender.web.inventory;
+package ca.hendriks.bartender.web.ingredient;
 
+import ca.hendriks.bartender.drinks.ingredient.Ingredient;
+import ca.hendriks.bartender.drinks.ingredient.IngredientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
