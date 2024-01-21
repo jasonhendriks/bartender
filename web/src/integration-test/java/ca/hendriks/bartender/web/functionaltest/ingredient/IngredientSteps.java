@@ -22,8 +22,8 @@ public class IngredientSteps {
         this.dsl = dsl;
     }
 
-    @When("the administrator adds {string} into categrory {string},")
-    public void the_administrator_adds_into_categrory(final String name, final String type) {
+    @When("the administrator adds {string} into category {string},")
+    public void the_administrator_adds_into_category(final String name, final String type) {
         final IngredientType typeEnum = IngredientType.valueOf(type);
         final Ingredient ingredient = new Ingredient(0, name, typeEnum);
         dsl.ingredients.addIngredient(ingredient);
