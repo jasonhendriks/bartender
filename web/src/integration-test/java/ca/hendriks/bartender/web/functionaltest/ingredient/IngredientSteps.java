@@ -5,21 +5,39 @@ import ca.hendriks.bartender.web.functionaltest.DomainSpecificLanguage;
 import ca.hendriks.bartender.web.inventory.Ingredient;
 import ca.hendriks.bartender.web.inventory.IngredientType;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class IngredientSteps {
 
+    public static final String TYPE = "Type";
+    public static final String NAME = "Name";
+
     private final DomainSpecificLanguage dsl;
 
     public IngredientSteps(final DomainSpecificLanguage dsl) {
         this.dsl = dsl;
+    }
+
+    @Given("ingredients:")
+    public void givenIngredients(final DataTable dataTable) {
+        final List<Ingredient> ingredients = dataTable.asMaps()
+                .stream()
+                .map(x -> {
+                    final String name = x.get(NAME);
+                    final IngredientType type = IngredientType.valueOf(x.get(TYPE));
+                    return new Ingredient(null, name, type);
+                })
+                .collect(Collectors.toList());
+        dsl.ingredients.givenIngredients(ingredients);
     }
 
     @When("the administrator adds {string} into categrory {string},")
@@ -39,8 +57,8 @@ public class IngredientSteps {
             final Ingredient actual = ingredients.get(c);
             final DataTableChecker<Ingredient> checker = new DataTableChecker<>(expected, actual);
             assertAll(
-                    () -> checker.assertEquals(e -> e, a -> a.getIngredientType().name(), "Type"),
-                    () -> checker.assertEquals(e -> e, Ingredient::getName, "Name"),
+                    () -> checker.assertEquals(e -> e, a -> a.getIngredientType().name(), TYPE),
+                    () -> checker.assertEquals(e -> e, Ingredient::getName, NAME),
                     checker::validateMapKeys
             );
         }

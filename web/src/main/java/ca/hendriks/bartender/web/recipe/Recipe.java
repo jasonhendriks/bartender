@@ -14,7 +14,7 @@ public class Recipe {
     @Column
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private Set<IngredientQuantity> ingredients;
 
     private String method;

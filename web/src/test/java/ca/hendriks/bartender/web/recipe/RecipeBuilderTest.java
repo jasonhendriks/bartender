@@ -11,13 +11,15 @@ class RecipeBuilderTest {
 
     @Test
     void testBuildingARecipe() {
-        final Recipe actual = new RecipeBuilder()
-                .name("vodka")
-                .ingredientBuilder()
+        final IngredientQuantity ingredient = new IngredientQuantityBuilder()
                 .quantity(1f)
                 .unitType(UnitType.MEASURE)
                 .ingredient(mock(Ingredient.class))
+                .build();
+        final Recipe actual = new RecipeBuilder()
+                .name("vodka")
                 .method("shaken, not stirred")
+                .ingredients(ingredient)
                 .build();
         assertAll(
                 () -> assertEquals("vodka", actual.getName()),

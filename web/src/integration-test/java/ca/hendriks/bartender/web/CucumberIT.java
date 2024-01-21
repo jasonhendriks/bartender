@@ -1,9 +1,6 @@
 package ca.hendriks.bartender.web;
 
 import ca.hendriks.bartender.web.functionaltest.BddMockMvcService;
-import ca.hendriks.bartender.web.functionaltest.ingredient.BddIngredientService;
-import ca.hendriks.bartender.web.inventory.IngredientsRestController;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
@@ -28,11 +25,6 @@ public class CucumberIT {
         @Bean
         BddMockMvcService bddMockMvcService(final WebApplicationContext webApplicationContext) {
             return new BddMockMvcService(webApplicationContext);
-        }
-
-        @Bean
-        BddIngredientService bddIngredientService(final ObjectMapper objectMapper, final IngredientsRestController ingredientsRestController, final BddMockMvcService mockMvc) {
-            return new BddIngredientService(objectMapper, mockMvc);
         }
 
     }

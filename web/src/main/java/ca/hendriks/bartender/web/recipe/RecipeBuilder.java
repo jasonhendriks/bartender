@@ -1,5 +1,6 @@
 package ca.hendriks.bartender.web.recipe;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,12 +23,13 @@ public class RecipeBuilder {
         return new Recipe(name, ingredients, method);
     }
 
-    public IngredientBuilder ingredientBuilder() {
-        return new IngredientBuilder(this);
+    public RecipeBuilder ingredients(final IngredientQuantity ingredient) {
+        this.ingredients.add(ingredient);
+        return this;
     }
 
-    public RecipeBuilder ingredient(final IngredientQuantity ingredientQuantity) {
-        this.ingredients.add(ingredientQuantity);
+    public RecipeBuilder ingredients(final Collection<IngredientQuantity> ingredients) {
+        this.ingredients.addAll(ingredients);
         return this;
     }
 
