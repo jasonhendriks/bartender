@@ -62,6 +62,10 @@ git push heroku
 
 ## Production Support
 
+### REST API documentation
+
+Access the RESt API docs at [/swagger-ui/index.html](https://bartender-162eb18845e5.herokuapp.com/swagger-ui/index.html)
+
 ### Debugging
 
 View the production logs:
@@ -74,11 +78,15 @@ heroku logs --tail
 
 ## Programming
 
+- [Deploying Spring Boot Applications to Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
 - [Spring Boot Tutorial – Bootstrap a Simple Application](https://www.baeldung.com/spring-boot-start)
 - [Spring Boot MockMvc Example with @WebMvcTest](https://howtodoinjava.com/spring-boot2/testing/spring-boot-mockmvc-example/)
 - [REST API URI Naming Conventions and Best Practices](https://restfulapi.net/resource-naming/)
 - [Which Java Type do you use for JPA collections and why?](https://stackoverflow.com/a/17950928)
 - [An Overview of Identifiers in Hibernate/JPA](https://www.baeldung.com/hibernate-identifiers)
+- [Why You Should Avoid Using JPA/Hibernate in Production](https://azhidkov.pro/en/posts/21/04/why-jpa-should-be-avoided/)
+- [Spring boot - Not a managed type](https://stackoverflow.com/questions/28664064/spring-boot-not-a-managed-type)
+- [Design Smell: Default Constructor](https://blog.ploeh.dk/2011/05/30/DesignSmellDefaultConstructor/)
 
 ## Drinks
 
