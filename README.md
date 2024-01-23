@@ -25,6 +25,12 @@ git clone https://github.com/jasonhendriks/bartender
 heroku git:remote -a bartender
 ```
 
+### Keeping the dependencies up-to-date
+
+```
+mvn versions:display-plugin-updates
+```
+
 ## Running Locally
 
 ### Build the application and run with the Maven Spring Boot plug-in
@@ -64,7 +70,8 @@ git push heroku
 
 ### REST API documentation
 
-Access the RESt API docs at [/swagger-ui/index.html](https://bartender-162eb18845e5.herokuapp.com/swagger-ui/index.html)
+Access the RESt API docs
+at [/swagger-ui/index.html](https://bartender-162eb18845e5.herokuapp.com/swagger-ui/index.html).
 
 ### Debugging
 
@@ -87,6 +94,7 @@ heroku logs --tail
 - [Why You Should Avoid Using JPA/Hibernate in Production](https://azhidkov.pro/en/posts/21/04/why-jpa-should-be-avoided/)
 - [Spring boot - Not a managed type](https://stackoverflow.com/questions/28664064/spring-boot-not-a-managed-type)
 - [Design Smell: Default Constructor](https://blog.ploeh.dk/2011/05/30/DesignSmellDefaultConstructor/)
+- [Passkeys Authentication Challenge with Spring Boot](https://developer.auth0.com/resources/guides/web-app/spring#)
 
 ## Drinks
 
