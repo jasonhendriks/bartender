@@ -20,3 +20,4 @@ spring:
       on-profile: PROD
   application:
     name: Bartender (PROD)
+    authentication: true
