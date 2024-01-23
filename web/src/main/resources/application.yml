@@ -4,20 +4,14 @@ spring:
     enabled: true
     prefix: classpath:/templates/
     suffix: .html
+  application:
+    name: Bartender (DEV)
+    authentication: false
 
 okta:
   oauth2:
     issuer: https://dev-j5u28jpjlghkvp85.us.auth0.com/
     client-id: WNFPVNOE6er37uvjGPimPExUZ1BSoLFX
-
----
-spring:
-  config:
-    activate:
-      on-profile: DEV
-  application:
-    name: Bartender (DEV)
-    authentication: false
 
 ---
 spring:
