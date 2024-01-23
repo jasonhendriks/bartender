@@ -13,9 +13,24 @@ public class HomeRestController {
     @Value("${spring.application.name}")
     String appName;
 
-    @GetMapping("/")
-    public String home(final Model model, @AuthenticationPrincipal final OidcUser principal) {
+    @GetMapping
+    public String directUserToHomePage(final Model model, @AuthenticationPrincipal final OidcUser principal) {
+        addPrincipalToModelIfApplicable(model, principal);
+        addApplicatioNameIntoModel(model);
+        return goToHomePage();
+    }
+
+    private void addApplicatioNameIntoModel(final Model model) {
         model.addAttribute("appName", appName);
+    }
+
+    private void addPrincipalToModelIfApplicable(final Model model, final OidcUser principal) {
+        if (principal != null) {
+            model.addAttribute("profile", principal.getClaims());
+        }
+    }
+
+    private String goToHomePage() {
         return "home";
     }
 
