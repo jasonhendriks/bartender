@@ -12,9 +12,9 @@ public class HomeRestController {
     String appName;
 
     @GetMapping("/")
-    public String homePage(final Model model) {
+    public String devHomePage(final Model model) {
         model.addAttribute("appName", appName);
-        return "index";
+        return "home";
     }
 
 }

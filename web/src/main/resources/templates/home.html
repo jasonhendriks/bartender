@@ -1,7 +1,16 @@
-<html>
+<!-- src/main/resources/templates/index.html -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head><title>Home Page</title></head>
 <body>
 <h1>Hello !</h1>
 <p>Welcome to <span th:text="${appName}">Our App</span></p>
+<p><a href="/swagger-ui/index.html">Swagger</a></p>
+<div sec:authorize="!isAuthenticated()">
+    <a th:href="@{/oauth2/authorization/okta}">Log In</a> (this requires the Auth0 Client Secret)
+</div>
+<div sec:authorize="isAuthenticated()">
+    <p>You are logged in!</p>
+</div>
 </body>
 </html>
