@@ -10,7 +10,10 @@
     <a th:href="@{/oauth2/authorization/okta}">Log In</a> (this requires the Auth0 Client Secret)
 </div>
 <div sec:authorize="isAuthenticated()">
-    <p>You are logged in!</p>
+    <p>You are totally logged in!</p>
+    <form name="logoutForm" th:action="@{/logout}" method="post">
+        <button type="submit" value="Log out">Log Out</button>
+    </form>
 </div>
 </body>
 </html>
