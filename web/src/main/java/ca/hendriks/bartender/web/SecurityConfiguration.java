@@ -11,7 +11,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-public class DevSecurityConfiguration {
+public class SecurityConfiguration {
 
     @Value("${spring.application.authentication:true}")
     private boolean authentication;
