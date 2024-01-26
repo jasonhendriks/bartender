@@ -6,7 +6,7 @@ Feature: Add ingredient
 
   Scenario: The administrator adds an ingredient
 
-    When the administrator adds "Vodka" into categrory "SPIRITS",
+    When the administrator adds "Vodka" into category "SPIRITS",
 
     Then the available ingredients should be:
       | Name  | Type    |
