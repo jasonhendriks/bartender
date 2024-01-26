@@ -5,6 +5,7 @@ import ca.hendriks.bartender.drinks.ingredient.IngredientType;
 import ca.hendriks.bartender.web.functionaltest.DataTableChecker;
 import ca.hendriks.bartender.web.functionaltest.DomainSpecificLanguage;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -47,6 +48,19 @@ public class IngredientSteps {
         dsl.ingredients.addIngredient(ingredient);
     }
 
+    @When("the administrator updates {string} with category {string}")
+    public void the_administrator_updates_with_category(final String ingredientName, final String type){
+        final IngredientType ingredientType = IngredientType.valueOf(type);
+        dsl.ingredients.updateIngredient(ingredientName, ingredientType);
+    }
+
+    //todo: post-test cleanup of repository
+
+    @When("the administrator deletes {string} with category {string}")
+    public void the_administrator_deletes_with_category(final String name, final String type) {
+        //todo: implement
+    }
+
     @Then("the available ingredients should be:")
     public void the_ingredients_should_be(final DataTable dataTable) {
         final List<Ingredient> ingredients = dsl.ingredients.findIngredients();
@@ -62,6 +76,11 @@ public class IngredientSteps {
                     checker::validateMapKeys
             );
         }
+    }
+
+    @After
+    public void cleanup(){
+        dsl.ingredients.cleanUpRepository();
     }
 
 }
