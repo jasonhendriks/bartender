@@ -54,13 +54,6 @@ public class IngredientSteps {
         dsl.ingredients.updateIngredient(ingredientName, ingredientType);
     }
 
-    //todo: post-test cleanup of repository
-
-    @When("the administrator deletes {string} with category {string}")
-    public void the_administrator_deletes_with_category(final String name, final String type) {
-        //todo: implement
-    }
-
     @Then("the available ingredients should be:")
     public void the_ingredients_should_be(final DataTable dataTable) {
         final List<Ingredient> ingredients = dsl.ingredients.findIngredients();
