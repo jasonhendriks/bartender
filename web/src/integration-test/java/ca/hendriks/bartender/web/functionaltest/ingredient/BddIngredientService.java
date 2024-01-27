@@ -67,4 +67,8 @@ public class BddIngredientService {
         ingredientRepository.deleteAll();
     }
 
+    public void deleteIngredient(final String ingredientName) {
+        final Ingredient ingredientToBeDeleted = ingredientRepository.findByName(ingredientName);
+        ingredientRepository.deleteById(ingredientToBeDeleted.getId());
+    }
 }

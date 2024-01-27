@@ -54,6 +54,11 @@ public class IngredientSteps {
         dsl.ingredients.updateIngredient(ingredientName, ingredientType);
     }
 
+    @When("the administrator deletes {string}")
+    public void the_administrator_deletes_ingredient(final String name) {
+        dsl.ingredients.deleteIngredient(name);
+    }
+
     @Then("the available ingredients should be:")
     public void the_ingredients_should_be(final DataTable dataTable) {
         final List<Ingredient> ingredients = dsl.ingredients.findIngredients();
