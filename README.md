@@ -94,6 +94,8 @@ heroku logs --tail
 - [Why You Should Avoid Using JPA/Hibernate in Production](https://azhidkov.pro/en/posts/21/04/why-jpa-should-be-avoided/)
 - [Spring boot - Not a managed type](https://stackoverflow.com/questions/28664064/spring-boot-not-a-managed-type)
 - [Design Smell: Default Constructor](https://blog.ploeh.dk/2011/05/30/DesignSmellDefaultConstructor/)
+- [Passkeys: Accelerating the Availability of Simpler, Stronger Passwordless Sign-Ins](https://fidoalliance.org/passkeys/)
+- [FIDO Security Key Support Comes To Auth0](https://auth0.com/blog/fido-security-key-support-comes-to-auth0/)
 - [Passkeys Authentication Challenge with Spring Boot](https://developer.auth0.com/resources/guides/web-app/spring#)
 
 ## Drinks
