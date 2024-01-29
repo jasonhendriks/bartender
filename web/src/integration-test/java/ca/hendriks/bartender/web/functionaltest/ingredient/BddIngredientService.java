@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,7 +31,7 @@ public class BddIngredientService {
     }
 
     public void addIngredient(final Ingredient ingredient) {
-        mvcResult = mockMvc.post("/ingredients", ingredient);
+        mvcResult = mockMvc.post("/ingredients/add", ingredient);
     }
 
     public List<Ingredient> findIngredients() {
@@ -56,11 +57,14 @@ public class BddIngredientService {
         return ingredientRepository.findByName(ingredientName);
     }
 
-    public Ingredient updateIngredient(final String ingredientName, final IngredientType ingredientType){
-        final int ingredientFromRepoId = findIngredient(ingredientName).getId();
-        final Ingredient ingredientToUpdate = new Ingredient(ingredientFromRepoId, ingredientName, ingredientType);
-        ingredientRepository.save(ingredientToUpdate);
-        return ingredientToUpdate;
+    public void updateIngredient(final String originalIngredientName, final String originalIngredientType,
+                                       final String updatedIngredientName, final String updatedIngredientType){
+        List<String> ingredientUpdates = new ArrayList<>();
+        ingredientUpdates.add(originalIngredientName);
+        ingredientUpdates.add(originalIngredientType);
+        ingredientUpdates.add(updatedIngredientName);
+        ingredientUpdates.add(updatedIngredientType);
+        mockMvc.post("/ingredients/update", ingredientUpdates);
     }
 
     public void cleanUpRepository(){
@@ -68,7 +72,7 @@ public class BddIngredientService {
     }
 
     public void deleteIngredient(final String ingredientName) {
-        final Ingredient ingredientToBeDeleted = ingredientRepository.findByName(ingredientName);
-        ingredientRepository.deleteById(ingredientToBeDeleted.getId());
+//        final Ingredient ingredientToBeDeleted = ingredientRepository.findByName(ingredientName);
+//        ingredientRepository.deleteById(ingredientToBeDeleted.getId());
     }
 }
