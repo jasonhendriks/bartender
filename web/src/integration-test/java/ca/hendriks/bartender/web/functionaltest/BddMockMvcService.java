@@ -20,11 +20,11 @@ public class BddMockMvcService {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-    public MvcResult get(final String uri) {
+    public MvcResult get(final String uri, final MediaType mediaType) {
         try {
             return mockMvc.perform(MockMvcRequestBuilders
                             .get(uri)
-                            .accept(MediaType.APPLICATION_JSON))
+                            .accept(mediaType))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andReturn();
@@ -33,13 +33,13 @@ public class BddMockMvcService {
         }
     }
 
-    public MvcResult post(final String uri, final Object data) {
+    public MvcResult post(final String uri, final Object data, final MediaType mediaType) {
         try {
             return mockMvc.perform(MockMvcRequestBuilders
                             .post(uri)
                             .content(asJsonString(data))
                             .contentType(MediaType.APPLICATION_JSON)
-                            .accept(MediaType.APPLICATION_JSON))
+                            .accept(mediaType))
                     .andDo(print())
                     .andExpect(status().isCreated())
                     .andReturn();

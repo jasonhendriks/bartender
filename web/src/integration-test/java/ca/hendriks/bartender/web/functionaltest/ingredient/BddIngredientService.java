@@ -8,6 +8,7 @@ import ca.hendriks.bartender.web.functionaltest.BddMockMvcService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -29,12 +30,16 @@ public class BddIngredientService {
         this.ingredientRepository = ingredientRepository;
     }
 
-    public void addIngredient(final Ingredient ingredient) {
-        mvcResult = mockMvc.post("/ingredients", ingredient);
+    public void addIngredientViaApi(final Ingredient ingredient) {
+        mvcResult = mockMvc.post("/api/ingredients", ingredient, MediaType.APPLICATION_JSON);
+    }
+
+    public void addIngredientViaBrowser(final Ingredient ingredient) {
+        mvcResult = mockMvc.post("/ingredients", ingredient, MediaType.TEXT_HTML);
     }
 
     public List<Ingredient> findIngredients() {
-        final MvcResult mvcResult = mockMvc.get("/ingredients");
+        final MvcResult mvcResult = mockMvc.get("/api/ingredients", MediaType.APPLICATION_JSON);
         return deserializeResult(mvcResult);
     }
 
@@ -56,15 +61,19 @@ public class BddIngredientService {
         return ingredientRepository.findByName(ingredientName);
     }
 
-    public Ingredient updateIngredient(final String ingredientName, final IngredientType ingredientType){
+    public Ingredient updateIngredient(final String ingredientName, final IngredientType ingredientType) {
         final int ingredientFromRepoId = findIngredient(ingredientName).getId();
         final Ingredient ingredientToUpdate = new Ingredient(ingredientFromRepoId, ingredientName, ingredientType);
         ingredientRepository.save(ingredientToUpdate);
         return ingredientToUpdate;
     }
 
-    public void cleanUpRepository(){
+    public void cleanUpRepository() {
         ingredientRepository.deleteAll();
+    }
+
+    public List<Ingredient> findIngredientsFromMockMvcResponse() {
+        return (List<Ingredient>) mvcResult.getModelAndView().getModel().get("ingredients");
     }
 
 }

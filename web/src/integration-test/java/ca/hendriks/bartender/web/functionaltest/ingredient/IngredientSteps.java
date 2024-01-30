@@ -45,11 +45,18 @@ public class IngredientSteps {
     public void the_administrator_adds_into_category(final String name, final String type) {
         final IngredientType typeEnum = IngredientType.valueOf(type);
         final Ingredient ingredient = new Ingredient(0, name, typeEnum);
-        dsl.ingredients.addIngredient(ingredient);
+        dsl.ingredients.addIngredientViaApi(ingredient);
+    }
+
+    @When("the administrator adds {string} into category {string} via the web browser,")
+    public void the_administrator_adds_into_category_via_the_web_browser(final String name, final String type) {
+        final IngredientType typeEnum = IngredientType.valueOf(type);
+        final Ingredient ingredient = new Ingredient(0, name, typeEnum);
+        dsl.ingredients.addIngredientViaBrowser(ingredient);
     }
 
     @When("the administrator updates {string} with category {string}")
-    public void the_administrator_updates_with_category(final String ingredientName, final String type){
+    public void the_administrator_updates_with_category(final String ingredientName, final String type) {
         final IngredientType ingredientType = IngredientType.valueOf(type);
         dsl.ingredients.updateIngredient(ingredientName, ingredientType);
     }
@@ -71,8 +78,25 @@ public class IngredientSteps {
         }
     }
 
+    @Then("the ingredients shown to the user are:")
+    public void the_ingredients_shown_to_the_user_are(final DataTable dataTable) {
+        final List<Ingredient> ingredients = dsl.ingredients.findIngredientsFromMockMvcResponse();
+        final List<Map<String, String>> expectedItems = dataTable.asMaps();
+        assertEquals(ingredients.size(), expectedItems.size());
+        for (int c = 0; c < ingredients.size(); c++) {
+            final Map<String, String> expected = expectedItems.get(c);
+            final Ingredient actual = ingredients.get(c);
+            final DataTableChecker<Ingredient> checker = new DataTableChecker<>(expected, actual);
+            assertAll(
+                    () -> checker.assertEquals(e -> e, a -> a.getIngredientType().name(), TYPE),
+                    () -> checker.assertEquals(e -> e, Ingredient::getName, NAME),
+                    checker::validateMapKeys
+            );
+        }
+    }
+
     @After
-    public void cleanup(){
+    public void cleanup() {
         dsl.ingredients.cleanUpRepository();
     }
 

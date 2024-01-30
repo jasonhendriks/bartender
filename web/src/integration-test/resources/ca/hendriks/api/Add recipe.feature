@@ -1,4 +1,4 @@
-Feature: Add recipe
+Feature: Add recipe via API
 
   In order for recipes to be matched to user's stock,
   As an administrator

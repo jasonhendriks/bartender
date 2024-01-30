@@ -6,6 +6,7 @@ import ca.hendriks.bartender.web.functionaltest.BddMockMvcService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -26,7 +27,7 @@ public class BddRecipeService {
     }
 
     public void addRecipe(final Recipe recipe) {
-        mvcResult = mockMvc.post("/recipes", recipe);
+        mvcResult = mockMvc.post("/recipes", recipe, MediaType.APPLICATION_JSON);
     }
 
     private List<Recipe> deserializeResult(final MvcResult mvcResult) {

@@ -1,0 +1,14 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<h1>Ingredients</h1>
+<table>
+    <tbody>
+    <tr th:each="student: ${ingredients}">
+        <td th:text="${student.id}"/>
+        <td th:text="${student.name}"/>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
