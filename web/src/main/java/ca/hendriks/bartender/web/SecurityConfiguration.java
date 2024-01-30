@@ -29,7 +29,7 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(authorize -> configureHttpRequests(authorize))
+        return http.authorizeHttpRequests(this::configureHttpRequests)
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
                 .oauth2Login(withDefaults())
                 .logout(logout -> logout.addLogoutHandler(configureLogout()))
