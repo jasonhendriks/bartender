@@ -19,7 +19,6 @@
         <module>drinks</module>
         <module>web</module>
         <module>common</module>
-        <module>users</module>
     </modules>
 
     <properties>
