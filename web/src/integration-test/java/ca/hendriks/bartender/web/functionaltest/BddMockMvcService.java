@@ -7,6 +7,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -20,11 +21,11 @@ public class BddMockMvcService {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-    public MvcResult get(final String uri, final MediaType mediaType) {
+    public MvcResult getViaApi(final String uri) {
         try {
             return mockMvc.perform(MockMvcRequestBuilders
                             .get(uri)
-                            .accept(mediaType))
+                            .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andReturn();
@@ -33,13 +34,28 @@ public class BddMockMvcService {
         }
     }
 
-    public MvcResult post(final String uri, final Object data, final MediaType mediaType) {
+    public MvcResult postViaApi(final String uri, final Object data) {
         try {
             return mockMvc.perform(MockMvcRequestBuilders
                             .post(uri)
                             .content(asJsonString(data))
                             .contentType(MediaType.APPLICATION_JSON)
-                            .accept(mediaType))
+                            .accept(MediaType.APPLICATION_JSON))
+                    .andDo(print())
+                    .andExpect(status().isCreated())
+                    .andReturn();
+        } catch (final Exception e) {
+            throw new UnexpectedBartenderException(e);
+        }
+    }
+
+    public MvcResult postViaHtmlForm(final String uri, final MultiValueMap<String, String> params) {
+        try {
+            return mockMvc.perform(MockMvcRequestBuilders
+                            .post(uri)
+                            .params(params)
+                            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                            .accept(MediaType.TEXT_HTML))
                     .andDo(print())
                     .andExpect(status().isCreated())
                     .andReturn();

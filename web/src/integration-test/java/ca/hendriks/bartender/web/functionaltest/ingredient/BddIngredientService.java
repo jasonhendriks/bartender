@@ -8,9 +8,10 @@ import ca.hendriks.bartender.web.functionaltest.BddMockMvcService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -31,15 +32,18 @@ public class BddIngredientService {
     }
 
     public void addIngredientViaApi(final Ingredient ingredient) {
-        mvcResult = mockMvc.post("/api/ingredients", ingredient, MediaType.APPLICATION_JSON);
+        mvcResult = mockMvc.postViaApi("/api/ingredients", ingredient);
     }
 
     public void addIngredientViaBrowser(final Ingredient ingredient) {
-        mvcResult = mockMvc.post("/ingredients", ingredient, MediaType.TEXT_HTML);
+        final MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
+        formData.add("name", ingredient.getName());
+        formData.add("type", ingredient.getIngredientType().name());
+        mvcResult = mockMvc.postViaHtmlForm("/ingredients", formData);
     }
 
     public List<Ingredient> findIngredientsViaApi() {
-        final MvcResult mvcResult = mockMvc.get("/api/ingredients", MediaType.APPLICATION_JSON);
+        final MvcResult mvcResult = mockMvc.getViaApi("/api/ingredients");
         return deserializeResult(mvcResult);
     }
 

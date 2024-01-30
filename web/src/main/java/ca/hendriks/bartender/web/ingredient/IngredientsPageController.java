@@ -2,6 +2,7 @@ package ca.hendriks.bartender.web.ingredient;
 
 import ca.hendriks.bartender.drinks.ingredient.Ingredient;
 import ca.hendriks.bartender.drinks.ingredient.IngredientRepository;
+import ca.hendriks.bartender.drinks.ingredient.IngredientType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,12 +27,16 @@ public class IngredientsPageController {
         return "ingredients";
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public String addIngredient(@RequestBody Ingredient ingredient, final Model model) {
+    public String addIngredient(
+            @RequestParam("name") String name,
+            @RequestParam("type") String type,
+            final Model model) {
+        final Ingredient ingredient = new Ingredient(0, name, IngredientType.valueOf(type));
         ingredientRepository.save(ingredient);
         addIngredients(model);
-        return "ingredients";
+        return "ingredients-table-and-form";
     }
 
     private void addIngredients(final Model model) {
