@@ -38,7 +38,7 @@ public class BddIngredientService {
         mvcResult = mockMvc.post("/ingredients", ingredient, MediaType.TEXT_HTML);
     }
 
-    public List<Ingredient> findIngredients() {
+    public List<Ingredient> findIngredientsViaApi() {
         final MvcResult mvcResult = mockMvc.get("/api/ingredients", MediaType.APPLICATION_JSON);
         return deserializeResult(mvcResult);
     }
@@ -72,7 +72,7 @@ public class BddIngredientService {
         ingredientRepository.deleteAll();
     }
 
-    public List<Ingredient> findIngredientsFromMockMvcResponse() {
+    public List<Ingredient> retrieveIngredientsFromMockMvcResponse() {
         return (List<Ingredient>) mvcResult.getModelAndView().getModel().get("ingredients");
     }
 

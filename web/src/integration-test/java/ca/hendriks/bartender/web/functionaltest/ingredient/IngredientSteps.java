@@ -63,25 +63,19 @@ public class IngredientSteps {
 
     @Then("the available ingredients should be:")
     public void the_ingredients_should_be(final DataTable dataTable) {
-        final List<Ingredient> ingredients = dsl.ingredients.findIngredients();
-        final List<Map<String, String>> expectedItems = dataTable.asMaps();
-        assertEquals(ingredients.size(), expectedItems.size());
-        for (int c = 0; c < ingredients.size(); c++) {
-            final Map<String, String> expected = expectedItems.get(c);
-            final Ingredient actual = ingredients.get(c);
-            final DataTableChecker<Ingredient> checker = new DataTableChecker<>(expected, actual);
-            assertAll(
-                    () -> checker.assertEquals(e -> e, a -> a.getIngredientType().name(), TYPE),
-                    () -> checker.assertEquals(e -> e, Ingredient::getName, NAME),
-                    checker::validateMapKeys
-            );
-        }
+        final List<Map<String, String>> expectedIngredients = dataTable.asMaps();
+        final List<Ingredient> actualIngredients = dsl.ingredients.findIngredientsViaApi();
+        verifyIngredients(expectedIngredients, actualIngredients);
     }
 
     @Then("the ingredients shown to the user are:")
     public void the_ingredients_shown_to_the_user_are(final DataTable dataTable) {
-        final List<Ingredient> ingredients = dsl.ingredients.findIngredientsFromMockMvcResponse();
-        final List<Map<String, String>> expectedItems = dataTable.asMaps();
+        final List<Map<String, String>> expectedIngredients = dataTable.asMaps();
+        final List<Ingredient> actualIngredients = dsl.ingredients.retrieveIngredientsFromMockMvcResponse();
+        verifyIngredients(expectedIngredients, actualIngredients);
+    }
+
+    private void verifyIngredients(final List<Map<String, String>> expectedItems, final List<Ingredient> ingredients) {
         assertEquals(ingredients.size(), expectedItems.size());
         for (int c = 0; c < ingredients.size(); c++) {
             final Map<String, String> expected = expectedItems.get(c);
