@@ -50,9 +50,7 @@ public class IngredientSteps {
 
     @When("the administrator adds {string} into category {string} via the web browser,")
     public void the_administrator_adds_into_category_via_the_web_browser(final String name, final String type) {
-        final IngredientType typeEnum = IngredientType.valueOf(type);
-        final Ingredient ingredient = new Ingredient(0, name, typeEnum);
-        dsl.ingredients.addIngredientViaBrowser(ingredient);
+        dsl.ingredients.addIngredientViaBrowser(name, type);
     }
 
     @When("the administrator updates {string} with category {string}")
