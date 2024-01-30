@@ -14,16 +14,13 @@ Try it out online: https://bartender-162eb18845e5.herokuapp.com
 ## Installation
 
 1. Download the [source code](https://github.com/jasonhendriks/bartender) to your workstation
-
-```
-git clone https://github.com/jasonhendriks/bartender
-```
-
+    ```
+    git clone https://github.com/jasonhendriks/bartender
+    ```
 2. [Optional] If you installed the Heroku CLI, connect your local repository to Heroku:
-
-```
-heroku git:remote -a bartender
-```
+    ```
+    heroku git:remote -a bartender
+    ```
 
 ### Keeping the dependencies up-to-date
 
@@ -97,6 +94,7 @@ heroku logs --tail
 - [Passkeys: Accelerating the Availability of Simpler, Stronger Passwordless Sign-Ins](https://fidoalliance.org/passkeys/)
 - [FIDO Security Key Support Comes To Auth0](https://auth0.com/blog/fido-security-key-support-comes-to-auth0/)
 - [Passkeys Authentication Challenge with Spring Boot](https://developer.auth0.com/resources/guides/web-app/spring#)
+- [OpenID Connect Scopes](https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes)
 
 ## Drinks
 
