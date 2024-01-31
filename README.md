@@ -95,6 +95,7 @@ heroku logs --tail
 - [FIDO Security Key Support Comes To Auth0](https://auth0.com/blog/fido-security-key-support-comes-to-auth0/)
 - [Passkeys Authentication Challenge with Spring Boot](https://developer.auth0.com/resources/guides/web-app/spring#)
 - [OpenID Connect Scopes](https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes)
+- [HTMX: Updating Other Content](https://htmx.org/examples/update-other-content/)
 
 ## Drinks
 

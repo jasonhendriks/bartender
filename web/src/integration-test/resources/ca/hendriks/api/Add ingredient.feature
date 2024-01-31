@@ -1,4 +1,4 @@
-Feature: Add ingredient
+Feature: Add ingredient via API
 
   In order for recipes and user inventories to reference ingredients
   As an administrator

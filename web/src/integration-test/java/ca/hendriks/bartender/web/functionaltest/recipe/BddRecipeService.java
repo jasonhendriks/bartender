@@ -26,7 +26,7 @@ public class BddRecipeService {
     }
 
     public void addRecipe(final Recipe recipe) {
-        mvcResult = mockMvc.post("/recipes", recipe);
+        mvcResult = mockMvc.postViaApi("/recipes", recipe);
     }
 
     private List<Recipe> deserializeResult(final MvcResult mvcResult) {
