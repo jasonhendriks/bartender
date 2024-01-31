@@ -31,7 +31,7 @@ public class BddIngredientService {
     }
 
     public void addIngredient(final Ingredient ingredient) {
-        mvcResult = mockMvc.post("/ingredients/add", ingredient);
+        mvcResult = mockMvc.post("/ingredients", ingredient);
     }
 
     public List<Ingredient> findIngredients() {
@@ -64,7 +64,7 @@ public class BddIngredientService {
         ingredientUpdates.add(originalIngredientType);
         ingredientUpdates.add(updatedIngredientName);
         ingredientUpdates.add(updatedIngredientType);
-        mockMvc.post("/ingredients/update", ingredientUpdates);
+        mockMvc.put("/ingredients", ingredientUpdates);
     }
 
     public void cleanUpRepository(){

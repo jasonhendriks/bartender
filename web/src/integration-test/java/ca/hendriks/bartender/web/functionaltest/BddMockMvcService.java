@@ -48,6 +48,21 @@ public class BddMockMvcService {
         }
     }
 
+    public MvcResult put(final String uri, final Object data){
+        try {
+            return mockMvc.perform(MockMvcRequestBuilders
+                    .put(uri)
+                    .content(asJsonString(data))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andReturn();
+        } catch (Exception e) {
+            throw new UnexpectedBartenderException(e);
+        }
+    }
+
     private static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);

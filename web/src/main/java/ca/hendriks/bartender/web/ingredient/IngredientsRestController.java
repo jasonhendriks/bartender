@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/ingredients")
 public class IngredientsRestController {
 
     private final IngredientRepository ingredientRepository;
@@ -18,21 +19,17 @@ public class IngredientsRestController {
     }
 
     @GetMapping
-    @RequestMapping("/ingredients")
     public List<Ingredient> findAllIngredients() {
         return ingredientRepository.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping("/ingredients/add")
     public Ingredient addIngredient(@RequestBody Ingredient ingredient) {
         return ingredientRepository.save(ingredient);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping("/ingredients/update")
+    @PutMapping
     public void updateIngredient(@RequestBody List<String> ingredientChangeList){
         final int ingredientToBeUpdatedId = ingredientRepository.findByName(ingredientChangeList.get(0)).getId();
         final IngredientType updatedIngredientType = IngredientType.valueOf(ingredientChangeList.get(3));
