@@ -37,4 +37,10 @@ public class IngredientsRestController {
         ingredientRepository.save(updatedIngredient);
     }
 
+    @DeleteMapping
+    public void deleteIngredient(@RequestBody Object ingredientName){
+        final int ingredientIdToBeDeleted = ingredientRepository.findByName(ingredientName.toString()).getId();
+        ingredientRepository.deleteById(ingredientIdToBeDeleted);
+    }
+
 }

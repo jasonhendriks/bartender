@@ -58,8 +58,7 @@ public class IngredientSteps {
 
     @When("the administrator deletes {string}")
     public void the_administrator_deletes_ingredient(final String name) {
-        //todo - fix delete
-//        dsl.ingredients.deleteIngredient(name);
+        dsl.ingredients.deleteIngredient(name);
     }
 
     @Then("the available ingredients should be:")

@@ -72,7 +72,6 @@ public class BddIngredientService {
     }
 
     public void deleteIngredient(final String ingredientName) {
-//        final Ingredient ingredientToBeDeleted = ingredientRepository.findByName(ingredientName);
-//        ingredientRepository.deleteById(ingredientToBeDeleted.getId());
+        mockMvc.delete("/ingredients", ingredientName);
     }
 }
