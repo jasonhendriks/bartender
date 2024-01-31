@@ -14,16 +14,20 @@ public class Ingredient {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private IngredientType ingredientType;
+    private IngredientType type;
 
     public Ingredient() {
         // JSR 338: The entity class must have a no-arg constructor.
     }
 
-    public Ingredient(final Integer id, final String name, final IngredientType ingredientType) {
+    public Ingredient(final String name, final IngredientType type) {
+        this(null, name, type);
+    }
+
+    public Ingredient(final Integer id, final String name, final IngredientType type) {
         this.id = id;
         this.name = name;
-        this.ingredientType = ingredientType;
+        this.type = type;
     }
 
     public Integer getId() {
@@ -34,8 +38,8 @@ public class Ingredient {
         return name;
     }
 
-    public IngredientType getIngredientType() {
-        return ingredientType;
+    public IngredientType getType() {
+        return type;
     }
 
 }

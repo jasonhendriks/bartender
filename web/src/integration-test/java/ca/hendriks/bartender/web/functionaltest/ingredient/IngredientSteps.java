@@ -35,7 +35,7 @@ public class IngredientSteps {
                 .map(x -> {
                     final String name = x.get(NAME);
                     final IngredientType type = IngredientType.valueOf(x.get(TYPE));
-                    return new Ingredient(null, name, type);
+                    return new Ingredient(name, type);
                 })
                 .collect(Collectors.toList());
         dsl.ingredients.givenIngredients(ingredients);
@@ -44,7 +44,7 @@ public class IngredientSteps {
     @When("the administrator adds {string} into category {string},")
     public void the_administrator_adds_into_category(final String name, final String type) {
         final IngredientType typeEnum = IngredientType.valueOf(type);
-        final Ingredient ingredient = new Ingredient(0, name, typeEnum);
+        final Ingredient ingredient = new Ingredient(name, typeEnum);
         dsl.ingredients.addIngredientViaApi(ingredient);
     }
 
@@ -80,7 +80,7 @@ public class IngredientSteps {
             final Ingredient actual = ingredients.get(c);
             final DataTableChecker<Ingredient> checker = new DataTableChecker<>(expected, actual);
             assertAll(
-                    () -> checker.assertEquals(e -> e, a -> a.getIngredientType().name(), TYPE),
+                    () -> checker.assertEquals(e -> e, a -> a.getType().name(), TYPE),
                     () -> checker.assertEquals(e -> e, Ingredient::getName, NAME),
                     checker::validateMapKeys
             );

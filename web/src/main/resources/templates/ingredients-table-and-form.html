@@ -3,15 +3,16 @@
     <table class="table">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Type</th>
-            <th></th>
         </tr>
         </thead>
         <tbody id="ingredients-table">
-        <tr th:each="student: ${ingredients}">
-            <td th:text="${student.id}"/>
-            <td th:text="${student.name}"/>
+        <tr th:each="ingredient: ${ingredients}">
+            <td th:text="${ingredient.id}"/>
+            <td th:text="${ingredient.name}"/>
+            <td th:text="${ingredient.type}"/>
         </tr>
         </tbody>
     </table>

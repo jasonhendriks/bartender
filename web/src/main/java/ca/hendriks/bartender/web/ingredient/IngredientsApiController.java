@@ -25,7 +25,7 @@ public class IngredientsApiController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Ingredient addIngredient(@RequestBody Ingredient ingredient) {
+    public Ingredient addIngredient(@RequestBody final Ingredient ingredient) {
         return ingredientRepository.save(ingredient);
     }
 
