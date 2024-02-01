@@ -30,10 +30,10 @@ public class IngredientsPageController {
     @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public String addIngredient(
-            @RequestParam("name") String name,
-            @RequestParam("type") String type,
+            @RequestParam("name") final String name,
+            @RequestParam("type") final String type,
             final Model model) {
-        final Ingredient ingredient = new Ingredient(0, name, IngredientType.valueOf(type));
+        final Ingredient ingredient = new Ingredient(name, IngredientType.valueOf(type));
         ingredientRepository.save(ingredient);
         addIngredients(model);
         return "ingredients-table-and-form";

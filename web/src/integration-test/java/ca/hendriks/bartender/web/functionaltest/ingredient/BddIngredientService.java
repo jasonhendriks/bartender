@@ -35,7 +35,7 @@ public class BddIngredientService {
         mvcResult = mockMvc.postViaApi("/api/ingredients", ingredient);
     }
 
-    public void addIngredientViaBrowser(final String name, String type) {
+    public void addIngredientViaBrowser(final String name, final String type) {
         final MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
         formData.add("name", name);
         formData.add("type", type);
