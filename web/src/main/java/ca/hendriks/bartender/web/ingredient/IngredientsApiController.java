@@ -4,17 +4,18 @@ import ca.hendriks.bartender.drinks.ingredient.Ingredient;
 import ca.hendriks.bartender.drinks.ingredient.IngredientRepository;
 import ca.hendriks.bartender.drinks.ingredient.IngredientType;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/ingredients")
-public class IngredientsRestController {
+@RequestMapping(path = "/api/ingredients", produces = MediaType.APPLICATION_JSON_VALUE)
+public class IngredientsApiController {
 
     private final IngredientRepository ingredientRepository;
 
-    public IngredientsRestController(final IngredientRepository ingredientRepository) {
+    public IngredientsApiController(final IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
 
@@ -25,7 +26,7 @@ public class IngredientsRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Ingredient addIngredient(@RequestBody Ingredient ingredient) {
+    public Ingredient addIngredient(@RequestBody final Ingredient ingredient) {
         return ingredientRepository.save(ingredient);
     }
 

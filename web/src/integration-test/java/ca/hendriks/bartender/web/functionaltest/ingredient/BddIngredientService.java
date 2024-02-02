@@ -10,6 +10,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -30,12 +32,19 @@ public class BddIngredientService {
         this.ingredientRepository = ingredientRepository;
     }
 
-    public void addIngredient(final Ingredient ingredient) {
-        mvcResult = mockMvc.post("/ingredients", ingredient);
+    public void addIngredientViaApi(final Ingredient ingredient) {
+        mvcResult = mockMvc.postViaApi("/api/ingredients", ingredient);
     }
 
-    public List<Ingredient> findIngredients() {
-        final MvcResult mvcResult = mockMvc.get("/ingredients");
+    public void addIngredientViaBrowser(final String name, final String type) {
+        final MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
+        formData.add("name", name);
+        formData.add("type", type);
+        mvcResult = mockMvc.postViaHtmlForm("/ingredients", formData);
+    }
+
+    public List<Ingredient> findIngredientsViaApi() {
+        final MvcResult mvcResult = mockMvc.getViaApi("/api/ingredients");
         return deserializeResult(mvcResult);
     }
 
@@ -64,14 +73,18 @@ public class BddIngredientService {
         ingredientUpdates.add(originalIngredientType);
         ingredientUpdates.add(updatedIngredientName);
         ingredientUpdates.add(updatedIngredientType);
-        mockMvc.put("/ingredients", ingredientUpdates);
+        mockMvc.put("/api/ingredients", ingredientUpdates);
     }
 
-    public void cleanUpRepository(){
+    public void cleanUpRepository() {
         ingredientRepository.deleteAll();
     }
 
+    public List<Ingredient> retrieveIngredientsFromMockMvcResponse() {
+        return (List<Ingredient>) mvcResult.getModelAndView().getModel().get("ingredients");
+    }
+
     public void deleteIngredient(final String ingredientName) {
-        mockMvc.delete("/ingredients", ingredientName);
+        mockMvc.delete("/api/ingredients", ingredientName);
     }
 }

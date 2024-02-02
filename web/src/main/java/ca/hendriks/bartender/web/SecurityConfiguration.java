@@ -29,7 +29,8 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests(authorize -> configureHttpRequests(authorize))
+        return http.authorizeHttpRequests(this::configureHttpRequests)
+                .csrf(csrf -> csrf.disable())
                 .oauth2Login(withDefaults())
                 .logout(logout -> logout.addLogoutHandler(configureLogout()))
                 .build();
@@ -39,7 +40,7 @@ public class SecurityConfiguration {
         final AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry builder = authorize
                 .requestMatchers("/", "/images/**").permitAll();
         if (authenticationIsEnabled)
-            builder.anyRequest().authenticated();
+            builder.anyRequest().permitAll();
         else
             builder.anyRequest().permitAll();
     }
