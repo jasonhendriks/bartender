@@ -39,6 +39,7 @@ public class IngredientsApiController {
     }
 
     @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteIngredient(@RequestBody Object ingredientName){
         final int ingredientIdToBeDeleted = ingredientRepository.findByName(ingredientName.toString()).getId();
         ingredientRepository.deleteById(ingredientIdToBeDeleted);

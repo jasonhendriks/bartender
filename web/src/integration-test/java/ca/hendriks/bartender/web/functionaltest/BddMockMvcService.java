@@ -96,7 +96,7 @@ public class BddMockMvcService {
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON))
                     .andDo(print())
-                    .andExpect(status().isOk())
+                    .andExpect(status().isNoContent())
                     .andReturn();
         } catch (Exception e) {
             throw new UnexpectedBartenderException(e);
