@@ -3,7 +3,6 @@ package ca.hendriks.bartender.web.functionaltest.ingredient;
 import ca.hendriks.bartender.common.exception.UnexpectedBartenderException;
 import ca.hendriks.bartender.drinks.ingredient.Ingredient;
 import ca.hendriks.bartender.drinks.ingredient.IngredientRepository;
-import ca.hendriks.bartender.drinks.ingredient.IngredientType;
 import ca.hendriks.bartender.web.functionaltest.BddMockMvcService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -14,7 +13,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -66,14 +64,10 @@ public class BddIngredientService {
         return ingredientRepository.findByName(ingredientName);
     }
 
-    public void updateIngredient(final String originalIngredientName, final String originalIngredientType,
-                                       final String updatedIngredientName, final String updatedIngredientType){
-        List<String> ingredientUpdates = new ArrayList<>();
-        ingredientUpdates.add(originalIngredientName);
-        ingredientUpdates.add(originalIngredientType);
-        ingredientUpdates.add(updatedIngredientName);
-        ingredientUpdates.add(updatedIngredientType);
-        mockMvc.put("/api/ingredients", ingredientUpdates);
+    public void updateIngredientViaApi(final String originalIngredientName, final Ingredient updatedIngredient){
+        final Ingredient originalIngredient = findIngredient(originalIngredientName);
+        final int id = originalIngredient.getId();
+        mockMvc.put("/api/ingredients", id, updatedIngredient);
     }
 
     public void cleanUpRepository() {
@@ -84,7 +78,7 @@ public class BddIngredientService {
         return (List<Ingredient>) mvcResult.getModelAndView().getModel().get("ingredients");
     }
 
-    public void deleteIngredient(final String ingredientName) {
+    public void deleteIngredientViaApi(final String ingredientName) {
         mockMvc.delete("/api/ingredients", ingredientName);
     }
 }

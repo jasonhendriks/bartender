@@ -56,13 +56,14 @@ public class IngredientSteps {
     @When("the administrator updates {string} with category {string} to {string} with {string}")
     public void the_administrator_updates_with_category_to_with(final String originalIngredientName, final String originalIngredientCategory,
                                                                 final String updatedIngredientName, final String updatedIngredientCategory) {
-        dsl.ingredients.updateIngredient(originalIngredientName, originalIngredientCategory, updatedIngredientName, updatedIngredientCategory);
+        final Ingredient updatedIngredient = new Ingredient(updatedIngredientName, IngredientType.valueOf(updatedIngredientCategory));
+        dsl.ingredients.updateIngredientViaApi(originalIngredientName, updatedIngredient);
     }
 
 
     @When("the administrator deletes {string}")
     public void the_administrator_deletes_ingredient(final String name) {
-        dsl.ingredients.deleteIngredient(name);
+        dsl.ingredients.deleteIngredientViaApi(name);
     }
 
     @Then("the available ingredients should be:")

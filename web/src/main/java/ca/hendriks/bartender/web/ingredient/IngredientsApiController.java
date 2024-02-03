@@ -2,7 +2,6 @@ package ca.hendriks.bartender.web.ingredient;
 
 import ca.hendriks.bartender.drinks.ingredient.Ingredient;
 import ca.hendriks.bartender.drinks.ingredient.IngredientRepository;
-import ca.hendriks.bartender.drinks.ingredient.IngredientType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -30,12 +29,10 @@ public class IngredientsApiController {
         return ingredientRepository.save(ingredient);
     }
 
-    @PutMapping
-    public void updateIngredient(@RequestBody List<String> ingredientChangeList){
-        final int ingredientToBeUpdatedId = ingredientRepository.findByName(ingredientChangeList.get(0)).getId();
-        final IngredientType updatedIngredientType = IngredientType.valueOf(ingredientChangeList.get(3));
-        final Ingredient updatedIngredient = new Ingredient(ingredientToBeUpdatedId, ingredientChangeList.get(2), updatedIngredientType);
-        ingredientRepository.save(updatedIngredient);
+    @PutMapping("/{id}")
+    public void updateIngredient(@PathVariable int id, @RequestBody Ingredient ingredientToUpdate){
+        final Ingredient newIngredient = new Ingredient(id, ingredientToUpdate.getName(), ingredientToUpdate.getType());
+        ingredientRepository.save(newIngredient);
     }
 
     @DeleteMapping
