@@ -29,4 +29,17 @@ public class IngredientsApiController {
         return ingredientRepository.save(ingredient);
     }
 
+    @PutMapping("/{id}")
+    public void updateIngredient(@PathVariable int id, @RequestBody Ingredient ingredientToUpdate){
+        final Ingredient newIngredient = new Ingredient(id, ingredientToUpdate.getName(), ingredientToUpdate.getType());
+        ingredientRepository.save(newIngredient);
+    }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteIngredient(@RequestBody Object ingredientName){
+        final int ingredientIdToBeDeleted = ingredientRepository.findByName(ingredientName.toString()).getId();
+        ingredientRepository.deleteById(ingredientIdToBeDeleted);
+    }
+
 }

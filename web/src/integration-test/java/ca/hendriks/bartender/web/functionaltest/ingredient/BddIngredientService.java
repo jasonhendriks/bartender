@@ -3,7 +3,6 @@ package ca.hendriks.bartender.web.functionaltest.ingredient;
 import ca.hendriks.bartender.common.exception.UnexpectedBartenderException;
 import ca.hendriks.bartender.drinks.ingredient.Ingredient;
 import ca.hendriks.bartender.drinks.ingredient.IngredientRepository;
-import ca.hendriks.bartender.drinks.ingredient.IngredientType;
 import ca.hendriks.bartender.web.functionaltest.BddMockMvcService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -65,11 +64,10 @@ public class BddIngredientService {
         return ingredientRepository.findByName(ingredientName);
     }
 
-    public Ingredient updateIngredient(final String ingredientName, final IngredientType ingredientType) {
-        final int ingredientFromRepoId = findIngredient(ingredientName).getId();
-        final Ingredient ingredientToUpdate = new Ingredient(ingredientFromRepoId, ingredientName, ingredientType);
-        ingredientRepository.save(ingredientToUpdate);
-        return ingredientToUpdate;
+    public void updateIngredientViaApi(final String originalIngredientName, final Ingredient updatedIngredient){
+        final Ingredient originalIngredient = findIngredient(originalIngredientName);
+        final int id = originalIngredient.getId();
+        mockMvc.put("/api/ingredients", id, updatedIngredient);
     }
 
     public void cleanUpRepository() {
@@ -80,4 +78,7 @@ public class BddIngredientService {
         return (List<Ingredient>) mvcResult.getModelAndView().getModel().get("ingredients");
     }
 
+    public void deleteIngredientViaApi(final String ingredientName) {
+        mockMvc.delete("/api/ingredients", ingredientName);
+    }
 }

@@ -1,6 +1,7 @@
 package ca.hendriks.bartender.web.functionaltest;
 
 import ca.hendriks.bartender.common.exception.UnexpectedBartenderException;
+import ca.hendriks.bartender.drinks.ingredient.Ingredient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -64,6 +65,21 @@ public class BddMockMvcService {
         }
     }
 
+    public MvcResult put(final String uri, final int id, final Ingredient data){
+        try {
+            return mockMvc.perform(MockMvcRequestBuilders
+                    .put(uri+"/"+id)
+                    .content(asJsonString(data))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andReturn();
+        } catch (Exception e) {
+            throw new UnexpectedBartenderException(e);
+        }
+    }
+
     private static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);
@@ -72,4 +88,18 @@ public class BddMockMvcService {
         }
     }
 
+    public MvcResult delete(final String uri, final Object data) {
+        try {
+            return mockMvc.perform(MockMvcRequestBuilders
+                    .delete(uri)
+                    .content(asJsonString(data))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+                    .andDo(print())
+                    .andExpect(status().isNoContent())
+                    .andReturn();
+        } catch (Exception e) {
+            throw new UnexpectedBartenderException(e);
+        }
+    }
 }
