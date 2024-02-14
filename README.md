@@ -6,7 +6,7 @@ Try it out online: https://bartender-162eb18845e5.herokuapp.com
 
 ## Requirements
 
-- [JDK v21](https://openjdk.org/projects/jdk/21/)
+- [JDK v17](https://openjdk.org/projects/jdk/17/)
 - [Git](https://www.atlassian.com/git/tutorials/install-git)
 - [Apache Maven v3.9](https://maven.apache.org/install.html)
 - [Optional] [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-cli)
