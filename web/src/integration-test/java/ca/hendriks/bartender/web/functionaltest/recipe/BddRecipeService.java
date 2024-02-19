@@ -39,4 +39,9 @@ public class BddRecipeService {
         }
     }
 
+    public List<Recipe> getRecipes(){
+        mvcResult = mockMvc.getViaApi("/recipes");
+        return deserializeResult(mvcResult);
+    }
+
 }

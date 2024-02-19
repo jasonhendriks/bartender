@@ -14,6 +14,8 @@ import io.cucumber.java.en.When;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class RecipeSteps {
 
     private final DomainSpecificLanguage dsl;
@@ -57,7 +59,9 @@ public class RecipeSteps {
     }
 
     @Then("there is {int} recipe in the system.")
-    public void there_is_recipe_in_the_system(Integer int1) {
+    public void there_is_recipe_in_the_system(final Integer expectedRecipeCount) {
+        List<Recipe> actualRecipes = dsl.recipes.getRecipes();
+        assertEquals(expectedRecipeCount, actualRecipes.size());
     }
 
 }
