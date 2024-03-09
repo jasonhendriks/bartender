@@ -93,13 +93,6 @@ public class RecipeSteps {
         assertEquals(expectedRecipeMethod, acutalRecipe.getMethod());
     }
 
-    @Given("a recipe named {string} with method {string}:")
-    public void a_recipe_named_with_method(final String recipeName, final String recipeMethod, final DataTable dataTable) {
-        final Set<IngredientWithQuantity> givenIngredientsWithQuantity = extractIngredientsWIthQuantityFromDataTable(dataTable);
-        final Recipe givenRecipe = new Recipe(recipeName, givenIngredientsWithQuantity, recipeMethod);
-        dsl.recipes.addRecipe(givenRecipe);
-    }
-
     @When("the administrator updates the recipe named {string} with method {string}:")
     public void the_administrator_updates_the_recipe_named_with_ingredient_to_with(final String recipeName, final String method, final DataTable dataTable) {
         final Recipe originalRecipe = getRecipe(recipeName);
