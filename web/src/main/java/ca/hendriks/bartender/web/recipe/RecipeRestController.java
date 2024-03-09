@@ -29,4 +29,11 @@ public class RecipeRestController {
         return recipeRepository.save(recipe);
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void putRecipe(@PathVariable final int id, @RequestBody final Recipe updatedRecipe){
+        Recipe recipeToBeUpdated = new Recipe(id, updatedRecipe.getName(), updatedRecipe.getIngredients(), updatedRecipe.getMethod());
+        recipeRepository.save(recipeToBeUpdated);
+    }
+
 }
