@@ -108,6 +108,21 @@ public class BddMockMvcService {
         }
     }
 
+    private static String asJsonString(final Ingredient obj) {
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private static String asJsonString(final Recipe obj) {
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public MvcResult delete(final String uri, final Object data) {
         try {
             return mockMvc.perform(MockMvcRequestBuilders
